@@ -18,7 +18,7 @@ class Product(models.Model):
     description = models.TextField()
     image = ImageField(blank=True, default=None)
     slug = models.SlugField(blank=True, unique=True)
-    color = models.CharField(blank=True, default=None, max_length=20)
+    color = models.CharField(blank=True, max_length=20)
     price = models.FloatField()
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
 
