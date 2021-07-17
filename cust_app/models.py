@@ -7,6 +7,15 @@ CATEGORY_CHOICES = (
     ("C", "Шмодяг"),
 )
 
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField()
+    slug = models.SlugField()
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+
+    def __str__(self):
+        return self.name
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,13 +25,3 @@ class Author(models.Model):
     def __str__(self):
         return self.user.username
 
-class Product(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    image = models.ImageField()
-    slug = models.SlugField()
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    productID = models.ForeignKey(Product, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
