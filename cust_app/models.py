@@ -23,7 +23,6 @@ class Product(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        print(self.image.url)
         if not self.slug:
             self.slug = slugify(self.name + "-" + rand_slug())
         super(Product, self).save(*args, **kwargs)
