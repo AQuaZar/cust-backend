@@ -10,8 +10,9 @@ CATEGORY_CHOICES = (
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField()
+    #image = models.ImageField(upload_to='products', use_url=True)
     slug = models.SlugField()
+    price = models.FloatField()
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
 
     def __str__(self):
