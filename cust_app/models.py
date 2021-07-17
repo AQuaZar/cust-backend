@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from pyuploadcare.dj.models import ImageField
+from colorthief import ColorThief
+import requests
 import random
 import string
 
@@ -16,6 +18,7 @@ class Product(models.Model):
     description = models.TextField()
     image = ImageField(blank=True, default=None)
     slug = models.SlugField(blank=True, unique=True)
+    color = models.CharField(blank=True, max_length=20)
     price = models.FloatField()
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
 
@@ -23,9 +26,13 @@ class Product(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        print(self.image)
+
         if not self.slug:
             self.slug = slugify(self.name + "-" + rand_slug())
+        if not self.color:
+            thief_image = ColorThief(requests.get(str(self.image), stream=True).raw)
+            palette = thief_image.get_palette(quality=1)
+            self.color = str(palette[0]).strip('()')
         super(Product, self).save(*args, **kwargs)
 
 class Author(models.Model):

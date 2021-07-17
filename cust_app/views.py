@@ -33,3 +33,4 @@ class ProductView(APIView):
             serialized_array.append(serialized_data)
         return Response(json.dumps(serialized_array))
 
+
