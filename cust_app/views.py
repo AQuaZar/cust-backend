@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-import rest_framework.serializers as serializers
+from .serializers import ProductSerializer
 from .models import Product, Author
 
 # class ProductSerializer(serializers.ModelSerializer):
@@ -19,6 +19,7 @@ from .models import Product, Author
 class ProductView(APIView):
     def get(self, request):
         products = Product.objects.all()
-        #serializer = ProductSerializer(product)
-        return Response({"products":products})
+        product = products[0]
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
 
