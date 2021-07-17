@@ -5,7 +5,7 @@ class ProductSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=100)
     description = serializers.CharField()
-    #image = models.ImageField(upload_to='products', use_url=True)
+    image = serializers.ImageField()
     slug = serializers.SlugField()
     price = serializers.FloatField()
     category = serializers.CharField()
