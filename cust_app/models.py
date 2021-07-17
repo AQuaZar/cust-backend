@@ -9,8 +9,9 @@ import string
 
 CATEGORY_CHOICES = (
     ("A", "Одяг"),
-    ("B", "Не Одяг"),
-    ("C", "Шмодяг"),
+    ("B", "Взуття"),
+    ("C", "Аксесуари"),
+    ("D", "Інше")
 )
 
 class Product(models.Model):
