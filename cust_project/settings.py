@@ -78,8 +78,8 @@ WSGI_APPLICATION = 'cust_project.wsgi.application'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3080",
     "http://127.0.0.1:3000",
-    "https://cust-frontend.vercel.app/",
-    "http://cust-frontend.vercel.app/"
+    "https://cust-frontend.vercel.app",
+    "http://cust-frontend.vercel.app"
 ]
 
 # Database
