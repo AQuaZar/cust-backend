@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import ProductSerializer
 from .models import Product, Author
+from django.shortcuts import get_object_or_404
 import json
 
 # class ProductSerializer(serializers.ModelSerializer):
@@ -33,4 +34,13 @@ class ProductView(APIView):
             serialized_array.append(serialized_data)
         return Response(json.dumps(serialized_array))
 
-
+class ProductDetail(APIView):
+    def get(self, request, slug):
+        product = get_object_or_404(Product, slug = slug)
+        image = product.image
+        serializer = ProductSerializer(product)
+        serialized_data = dict()
+        for k, v in serializer.data.items():
+            serialized_data[k] = v
+        serialized_data['image'] = str(image)
+        return Response(json.dumps(serialized_data))
