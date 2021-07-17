@@ -22,8 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bo1i%ddx_yj50i!f8ney&6yfj24**%wbitw+7*ro@+^5=c(bs5'
-
+SECRET_KEY = os.environ['SECRET_KEY']
+UPLOADCARE_PUBLIC = os.environ['UPLOADCARE_PUBLIC']
+UPLOADCARE_SECRET = os.environ['UPLOADCARE_SECRET']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     'cust_app.apps.CustAppConfig',
     'rest_framework',
     'corsheaders',
+    'pyuploadcare.dj',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,6 +76,11 @@ TEMPLATES = [
         },
     },
 ]
+
+UPLOADCARE = {
+    'pub_key': UPLOADCARE_PUBLIC,
+    'secret': UPLOADCARE_SECRET,
+}
 
 WSGI_APPLICATION = 'cust_project.wsgi.application'
 
