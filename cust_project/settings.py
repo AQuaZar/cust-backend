@@ -77,6 +77,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'cust_project.wsgi.application'
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = (
+        'Access-Control-Allow-Headers',
+        'Access-Control-Allow-Credentials',
+    )
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3080",
     "http://127.0.0.1:3000",
