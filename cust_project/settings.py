@@ -27,7 +27,7 @@ SECRET_KEY = 'bo1i%ddx_yj50i!f8ney&6yfj24**%wbitw+7*ro@+^5=c(bs5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 
 # Application definition
@@ -76,18 +76,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cust_project.wsgi.application'
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_HEADERS = (
-        'Access-Control-Allow-Headers',
-        'Access-Control-Allow-Credentials',
-    )
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3080",
-    "http://127.0.0.1:3000",
-    "https://cust-frontend.vercel.app",
-    "http://cust-frontend.vercel.app",
-    "cust-frontend.vercel.app"
-]
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_HEADERS = (
+#         'Access-Control-Allow-Headers',
+#         'Access-Control-Allow-Credentials',
+#     )
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3080",
+#     "http://127.0.0.1:3000",
+#     "https://cust-frontend.vercel.app",
+#     "http://cust-frontend.vercel.app",
+#     "cust-frontend.vercel.app"
+# ]
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
