@@ -1,2 +1,2 @@
-web: gunicorn cust_app.wsgi
+web: gunicorn cust_project.wsgi
 release: python manage.py migrate
