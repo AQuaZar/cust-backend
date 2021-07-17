@@ -15,7 +15,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = ImageField(blank=True, default=None)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(blank=True, unique=True)
     price = models.FloatField()
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
 
@@ -23,6 +23,7 @@ class Product(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        print(self.image)
         if not self.slug:
             self.slug = slugify(self.name + "-" + rand_slug())
         super(Product, self).save(*args, **kwargs)

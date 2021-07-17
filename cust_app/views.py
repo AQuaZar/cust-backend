@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import ProductSerializer
 from .models import Product, Author
+import json
 
 # class ProductSerializer(serializers.ModelSerializer):
 #     photo_url = serializers.SerializerMethodField()
@@ -19,7 +20,16 @@ from .models import Product, Author
 class ProductView(APIView):
     def get(self, request):
         products = Product.objects.all()
-        product = products[0]
-        serializer = ProductSerializer(product)
-        return Response(serializer.data)
+        serialized_array = []
+        for product in products:
+            print('In view',product.image)
+            image = product.image
+            serializer = ProductSerializer(product)
+            serialized_data = dict()
+            for k,v in serializer.data.items():
+                serialized_data[k]=v
+            serialized_data['image'] = str(image)
+            print('After serializer ', serializer.data)
+            serialized_array.append(serialized_data)
+        return Response(json.dumps(serialized_array))
 
