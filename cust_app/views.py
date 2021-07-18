@@ -51,10 +51,12 @@ class AuthorView(APIView):
         serialized_array = []
         for author in authors:
             image = author.logo
+            username = author.user.username
             serializer = AuthorSerializer(author)
             serialized_data = dict()
             for k,v in serializer.data.items():
                 serialized_data[k]=v
             serialized_data['image'] = str(image)
+            serialized_data['username'] = str(username)
             serialized_array.append(serialized_data)
         return Response(json.dumps(serialized_array))
