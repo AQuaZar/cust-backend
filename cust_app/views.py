@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer, AuthorSerializer
 from .models import Product, Author
 from django.shortcuts import get_object_or_404
 import json
@@ -44,3 +44,17 @@ class ProductDetail(APIView):
             serialized_data[k] = v
         serialized_data['image'] = str(image)
         return Response(json.dumps(serialized_data))
+
+class AuthorView(APIView):
+    def get(self, request):
+        authors = Author.objects.all()
+        serialized_array = []
+        for author in authors:
+            image = author.logo
+            serializer = AuthorSerializer(author)
+            serialized_data = dict()
+            for k,v in serializer.data.items():
+                serialized_data[k]=v
+            serialized_data['image'] = str(image)
+            serialized_array.append(serialized_data)
+        return Response(json.dumps(serialized_array))
